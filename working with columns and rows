@@ -1,0 +1,47 @@
+namespace CSlight
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[,] array = new int[4, 4];
+            Random rand = new Random();
+            int rows;
+            int cols;
+            int sum = 0;
+            int multi = 1;
+
+            Console.WriteLine("Введите номер строки массива, по которой необходимо вычислить сумму:");
+            rows = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Введите номер столбца массива, по которому необходимо вычислить произведение:");
+            cols = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    array[i, j] = rand.Next(0, 9);
+                    Console.Write(array[i, j] + " ");
+
+                    if ( i == rows - 1)
+                    {
+                        sum += array[i,j];
+                    }
+                    if (j == cols - 1)
+                    {
+                        multi *= array[i, j];
+                    }
+                }
+                
+                Console.WriteLine();
+            }
+
+
+            Console.WriteLine($"\n Cумма элементов по строке {rows} = {sum}.");
+            Console.WriteLine($"\n Произведение элементов по столбцу {cols} = {multi}.");
+            Console.ReadKey();
+
+        }   
+    }
+}
