@@ -1,21 +1,52 @@
-namespace CSlight
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            int[,] array = new int[4, 4];
+//Дан двумерный массив.
+//Вычислить сумму второй строки и произведение первого столбца. Вывести исходную матрицу и результаты вычислений.
+
+            Console.WriteLine("Введите количество столбцов массива:");
+            int userCols = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите количество рядов массива:");
+            int userRows = Convert.ToInt32(Console.ReadLine());
+
+
+            int[,] array = new int[userRows, userCols];
             Random rand = new Random();
-            int rows;
-            int cols;
+            int rows =0;
+            int cols = 0;
             int sum = 0;
             int multi = 1;
+            bool verificationRows = false;
+            bool verificationCols = false;
 
-            Console.WriteLine("Введите номер строки массива, по которой необходимо вычислить сумму:");
-            rows = Convert.ToInt32(Console.ReadLine());
+            while (verificationRows != true)
+            {
+                Console.WriteLine("Введите номер строки массива, по которой необходимо вычислить сумму:");
+                rows = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Введите номер столбца массива, по которому необходимо вычислить произведение:");
-            cols = Convert.ToInt32(Console.ReadLine());
+                if ((rows > userRows)|| (rows < 0))
+                {
+                    Console.WriteLine("Не верная строка.");
+
+                }
+                else
+                {
+                    verificationRows = true;
+                }
+            }
+
+            while (verificationCols != true)
+            {
+                Console.WriteLine("Введите номер столбца массива, по которому необходимо вычислить произведение:");
+                cols = Convert.ToInt32(Console.ReadLine());
+
+                if ((cols > userCols)||(cols<0))
+                {
+                    Console.WriteLine("Не верный столбец.");
+
+                }
+                else
+                {
+                    verificationCols = true;
+                }
+            }
 
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -41,7 +72,3 @@ namespace CSlight
             Console.WriteLine($"\n Cумма элементов по строке {rows} = {sum}.");
             Console.WriteLine($"\n Произведение элементов по столбцу {cols} = {multi}.");
             Console.ReadKey();
-
-        }   
-    }
-}
