@@ -1,0 +1,48 @@
+//Дан одномерный массив целых чисел из 30 элементов.
+            //Найдите все локальные максимумы и вывести их. (Элемент является локальным максимумом, если он больше своих соседей)
+            //Крайний элемент является локальным максимумом, если он больше своего соседа.
+            //Программа должна работать с массивом любого размера.
+            //Массив всех локальных максимумов не нужен.
+
+            Console.WriteLine("Введите размер массива:");
+            int arraySize = Convert.ToInt32(Console.ReadLine());
+
+
+            int[] array = new int[arraySize];
+            Random random = new Random();
+            int userMimValue;
+            int userMaxValue;
+            int arrayElementMimValue;
+            int arrayElementMaxValue;
+
+
+            Console.WriteLine("Введите минимальное значение елемента массива:");
+            userMimValue = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите максимальное значение елемента массива:");
+            userMaxValue = Convert.ToInt32(Console.ReadLine());
+
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                array[i] = random.Next(userMimValue, userMaxValue);
+                Console.Write(array[i] + " ");
+            }
+
+            for (int i = 0; i < array.GetLength(0); i++) //вот здесь ищу локальнвый максимум, не могу понять как обойти отсутствие array[i - 1] при i = 0?
+            {
+                if (array[i] == array[0])
+                {
+                    arrayElementMaxValue = array[i];
+                    Console.Write(arrayElementMaxValue + " ");
+                 
+                }
+
+                if (array[i - 1] < array[i] && array[i] > array[i + 1])
+                {
+                    arrayElementMaxValue = array[i];
+                    Console.Write(arrayElementMaxValue + " ");
+
+                }
+            }
+
+            Console.ReadKey();
