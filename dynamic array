@@ -1,0 +1,57 @@
+//Пользователь вводит числа, и программа их запоминает.
+            //Как только пользователь введёт команду sum, программа выведет сумму всех веденных чисел.
+            //Выход из программы должен происходить только в том случае, если пользователь введет команду exit.
+            //Если введено не sum и не exit, значит это число и его надо добавить в массив.
+            //Программа должна работать на основе расширения массива.
+            //Внимание, нельзя использовать List<T> и Array.Resize
+
+            string userInput;
+            bool isOpen = true;
+            int sum = 0;
+
+            int[] array = {0};
+
+            while (isOpen)
+            {
+                Console.WriteLine("Ведите число или комады 'sum' - для суммирования и 'exit'  - длы выхода");
+                userInput = Console.ReadLine();
+
+                if (userInput == "sum")
+                {
+
+                    for(int i = 0; i < array.Length; i++)
+                    {
+                        sum += array[i];
+
+                    }
+                    Console.WriteLine($"сумма элементов массива = {sum}.");
+                    sum = 0;
+                }
+
+                else if (userInput == "exit")
+                {
+                    isOpen = false;
+                }
+
+                else
+                {
+                    int[] tempArray = new int[array.Length + 1];
+
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        tempArray[i] = array[i];
+                    }
+
+
+                    tempArray[tempArray.Length-1] = Convert.ToInt32(userInput);
+                    array = tempArray;
+
+                    Console.Write("Массив включает в себя: ");
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        Console.Write(array[i] + " ");
+                    }
+
+                }
+
+            }
