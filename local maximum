@@ -7,6 +7,7 @@
             Console.WriteLine("Введите размер массива:");
             int arraySize = Convert.ToInt32(Console.ReadLine());
 
+
             int[] array = new int[arraySize];
             Random random = new Random();
             int userMimValue;
@@ -18,27 +19,42 @@
             Console.WriteLine("Введите максимальное значение елемента массива:");
             userMaxValue = Convert.ToInt32(Console.ReadLine());
 
+
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 array[i] = random.Next(userMimValue, userMaxValue);
                 Console.Write(array[i] + " ");
             }
+            Console.ReadKey();
+            Console.WriteLine();
+            Console.WriteLine("Локальные максимумы массива:");
 
-            for (int i = 0; i < array.GetLength(0); i++) //вот здесь ищу локальнвый максимум, не могу понять как обойти отсутствие array[i - 1] при i = 0?
+            if (array[0] > array[1])                                            // проверяю первый элемент
             {
-                if (array[i] == array[0])
+                arrayElementMaxValue = array[0];
+                Console.Write(arrayElementMaxValue + " ");
+            }
+
+            for (int i = 0; i < array.GetLength(0) ; i++)                       //перебираю элемнты массива
+            {
+                if (i < array.GetLength(0)-2)                                   // исключение до предпоследнего элемнта массива
                 {
-                    arrayElementMaxValue = array[i];
-                    Console.Write(arrayElementMaxValue + " ");
-                 
+                    if (array[i] < array[i + 1] && array[i + 1] > array[i + 2]) // поиск локального максимума от array[1] до array[размер массива - 2]
+                    {   
+                        arrayElementMaxValue = array[i+1];
+                        Console.Write(arrayElementMaxValue + " ");
+
+                    }
                 }
-
-                if (array[i - 1] < array[i] && array[i] > array[i + 1])
+                else
                 {
-                    arrayElementMaxValue = array[i];
-                    Console.Write(arrayElementMaxValue + " ");
-
+                    break;
                 }
             }
 
+            if (array[arraySize-1 ] > array[arraySize -2])                      // проверю последний элемент массива
+            {
+                arrayElementMaxValue = array[arraySize - 1];
+                Console.Write(arrayElementMaxValue + " ");
+            }
             Console.ReadKey();
